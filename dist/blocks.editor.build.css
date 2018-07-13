@@ -12,3 +12,6 @@ textarea {
  * Can include things like variables and mixins
  * that are used across the project.
 */
+.wp-block-laboratory-blocks-full-screen-section .logo {
+  max-width: 300px;
+  height: auto; }

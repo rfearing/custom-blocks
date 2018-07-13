@@ -5,6 +5,9 @@
  * Simple block, renders and saves the same content without any interactivity.
  */
 
+// Components.
+import { PhotoshopPicker } from 'react-color';
+
 // CSS.
 import '../editor.scss';
 import './style.scss';
@@ -19,6 +22,7 @@ const TITLE = 'title';
 const LOGO = 'logo';
 const ARROW = 'arrow';
 const BG = 'background';
+const BG_COLOR = 'background-color';
 
 // Guttenberg Imports.
 const { PlainText, MediaUpload } = wp.editor;
@@ -56,6 +60,9 @@ registerBlockType('laboratory-blocks/full-screen-section', {
       attribute: 'src',
       selector: `.${BG}`,
     },
+    bgColor: {
+      selector: `.${BG_COLOR}`,
+    },
   },
 
   /**
@@ -65,7 +72,19 @@ registerBlockType('laboratory-blocks/full-screen-section', {
   edit({ attributes, className, setAttributes }) {
     return (
       <div className={`${className}`}>
-        <div className="p-3">
+        <p>Full Page Section</p>
+        <hr />
+        <div className="">
+          <p>Background Color:</p>
+          <PhotoshopPicker
+            onChangeComplete={color => setAttributes({ bgColor: color.hex })}
+            color={attributes.bgColor || '#FFFFFF'}
+          />
+        </div>
+
+        {/* Background Image */}
+        <div className="py-3">
+          <p>Background Image: </p>
           <MediaUpload
             onSelect={media => setAttributes({ bgImageUrl: media.url })}
             type="image"
@@ -77,7 +96,9 @@ registerBlockType('laboratory-blocks/full-screen-section', {
           />
         </div>
 
-        <div className="p-3">
+        {/* Logo */}
+        <div className="py-3">
+          <p>Logo: </p>
           <MediaUpload
             onSelect={media => setAttributes({ logoUrl: media.url })}
             type="image"
@@ -90,7 +111,9 @@ registerBlockType('laboratory-blocks/full-screen-section', {
           />
         </div>
 
-        <div className="p-3">
+        {/* Hero Text */}
+        <div className="py-3">
+          <p>Heading Text: </p>
           <PlainText
             onChange={content => setAttributes({ title: content })}
             value={attributes.title}
@@ -99,7 +122,8 @@ registerBlockType('laboratory-blocks/full-screen-section', {
           />
         </div>
 
-        <div className="p-3">
+        {/* Downward Link */}
+        <div className="py-3">
           <CheckboxControl
             label="Include Arrow Down?"
             checked={attributes.includeArrow}
@@ -120,11 +144,16 @@ registerBlockType('laboratory-blocks/full-screen-section', {
       logoUrl,
       title,
       includeArrow,
+      bgColor,
     } = attributes;
 
-    const bgStyle = (bgImageUrl) ? { backgroundImage: `url(${bgImageUrl})` } : {};
-    const arrow = (includeArrow) ? <span className={ARROW} /> : <span />;
+    const bottomRef = `below-labs-full-screen-section-${Math.random(99)}`;
+    const arrow = (includeArrow) ? <a className={ARROW} href={bottomRef} /> : <span />;
     const logo = conditionallyReturnImage({ src: logoUrl });
+    let bgStyle = { backgroundColor: bgColor };
+    if (bgImageUrl) {
+      bgStyle = { ...bgStyle, backgroundImage: `url(${bgImageUrl})` };
+    }
 
     return (
       <div
@@ -137,7 +166,9 @@ registerBlockType('laboratory-blocks/full-screen-section', {
             {title}
           </h3>
           {arrow}
+          <span className={BG_COLOR}>{bgColor}</span>
         </div>
+        <span id={`#${bottomRef}`} />
       </div>
     );
   },

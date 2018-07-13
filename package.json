@@ -11,6 +11,7 @@
     "bootstrap": "^4.1.2",
     "cgb-scripts": "1.9.7",
     "react": "^16.4.1",
+    "react-color": "^2.14.1",
     "react-dom": "^16.4.1",
     "reactstrap": "^6.3.0"
   },
