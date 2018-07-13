@@ -5,30 +5,37 @@
  * Simple block, renders and saves the same content without any interactivity.
  */
 
-//  Import CSS.
+// CSS.
+import '../editor.scss';
 import './style.scss';
 import './editor.scss';
 
-import { getImageButton } from '../../helpers/admin-helpers';
+// Helpers
+import { getImageButton, conditionallyReturnImage } from '../../helpers/admin-helpers';
 
-const { RichText, MediaUpload, PlainText, InnerBlocks } = wp.editor;
-const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
-const { Button } = wp.components;
+// Selectors. In CSS target inside .wp-block-<your-registered-blocktype>
+// By including CSS classes as variables we reduce the chance of misspelling later.
+const TITLE = 'title';
+const LOGO = 'logo';
+const ARROW = 'arrow';
+const BG = 'background';
+
+// Guttenberg Imports.
+const { PlainText, MediaUpload } = wp.editor;
+const { registerBlockType } = wp.blocks;
+const { CheckboxControl } = wp.components;
 
 /**
- * Register: aa Gutenberg Block.
+ * Register Full Screen Gutenberg Block.
  *
- * Registers a new block provided a unique name and an object defining its
- * behavior. Once registered, the block is made editor as an option to any
- * editor interface where blocks are implemented.
- *
- * @link https://wordpress.org/gutenberg/handbook/block-api/
  * @param  {string}   name     Block name.
  * @param  {Object}   settings Block settings.
  * @return {?WPBlock}          The block, if it has been successfully
  *                             registered; otherwise `undefined`.
+ *
+ * Note the dots for the CSS selectors are added here.
  */
-registerBlockType( 'laboratory-blocks/full-screen-section', {
+registerBlockType('laboratory-blocks/full-screen-section', {
   title: 'Full Screen Section',
   icon: 'editor-expand',
   category: 'common',
@@ -36,52 +43,69 @@ registerBlockType( 'laboratory-blocks/full-screen-section', {
   attributes: {
     title: {
       source: 'text',
-      selector: '.card__title'
+      selector: `.${TITLE}`,
     },
-    body: {
-      type: 'array',
-      source: 'children',
-      selector: '.card__body'
+    includeArrow: {
+      selector: `.${ARROW}`,
     },
-    imageAlt: {
-      attribute: 'alt',
-      selector: '.card__image'
-    },
-    imageUrl: {
+    logoUrl: {
       attribute: 'src',
-      selector: '.card__image'
+      selector: `.${LOGO}`,
+    },
+    bgImageUrl: {
+      attribute: 'src',
+      selector: `.${BG}`,
     },
   },
+
   /**
    * The edit function describes the structure of your block in the context of the editor.
    * This represents what the editor will render when the block is used.
-   *
-   * The "edit" property must be a valid function.
-   *
-   * @link https://wordpress.org/gutenberg/handbook/block-api/block-edit-save/
    */
   edit({ attributes, className, setAttributes }) {
     return (
-      <div className="container">
+      <div className={`${className}`}>
+        <div className="p-3">
+          <MediaUpload
+            onSelect={media => setAttributes({ bgImageUrl: media.url })}
+            type="image"
+            value={attributes.bgImageUrl}
+            render={({ open }) => getImageButton(open, {
+              ...attributes,
+              src: attributes.bgImageUrl,
+            })}
+          />
+        </div>
 
-        <MediaUpload
-          onSelect={ media => { setAttributes({ imageAlt: media.alt, imageUrl: media.url }); } }
-          type="image"
-          value={ attributes.imageID }
-          render={ ({ open }) => getImageButton(open, attributes) }
-        />
-        <PlainText
-          onChange={ content => setAttributes({ title: content }) }
-          value={ attributes.title }
-          placeholder="Your card title"
-          className="heading"
-        />
-        <RichText
-          onChange={ content => setAttributes({ body: content }) }
-          value={ attributes.body }
-          multiline="p"
-          placeholder="Your card text"
-        />
+        <div className="p-3">
+          <MediaUpload
+            onSelect={media => setAttributes({ logoUrl: media.url })}
+            type="image"
+            value={attributes.logoUrl}
+            render={({ open }) => getImageButton(open, {
+              ...attributes,
+              description: 'Logo',
+              src: attributes.logoUrl,
+            })}
+          />
+        </div>
+
+        <div className="p-3">
+          <PlainText
+            onChange={content => setAttributes({ title: content })}
+            value={attributes.title}
+            placeholder="Hero Text"
+            className="heading"
+          />
+        </div>
+
+        <div className="p-3">
+          <CheckboxControl
+            label="Include Arrow Down?"
+            checked={attributes.includeArrow}
+            onChange={bool => setAttributes({ includeArrow: bool })}
+          />
+        </div>
       </div>
     );
   },
@@ -89,47 +113,32 @@ registerBlockType( 'laboratory-blocks/full-screen-section', {
   /**
    * The save function defines the way in which the different attributes should be combined
    * into the final markup, which is then serialized by Gutenberg into post_content.
-   *
-   * The "save" property must be specified and must be a valid function.
-   *
-   * @link https://wordpress.org/gutenberg/handbook/block-api/block-edit-save/
    */
   save({ attributes }) {
+    const {
+      bgImageUrl,
+      logoUrl,
+      title,
+      includeArrow,
+    } = attributes;
 
-    const cardImage = (src, alt) => {
-      if(!src) return null;
-
-      if(alt) {
-        return (
-          <img
-            className="card__image"
-            src={ src }
-            alt={ alt }
-          />
-        );
-      }
-
-      // No alt set, so let's hide it from screen readers
-      return (
-        <img
-          className="card__image"
-          src={ src }
-          alt=""
-          aria-hidden="true"
-        />
-      );
-    };
+    const bgStyle = (bgImageUrl) ? { backgroundImage: `url(${bgImageUrl})` } : {};
+    const arrow = (includeArrow) ? <span className={ARROW} /> : <span />;
+    const logo = conditionallyReturnImage({ src: logoUrl });
 
     return (
-      <div className="card">
-        { cardImage(attributes.imageUrl, attributes.imageAlt) }
-        <div className="card__content">
-          <h3 className="card__title">{ attributes.title }</h3>
-          <div className="card__body">
-            { attributes.body }
-          </div>
+      <div
+        className={BG}
+        style={bgStyle}
+      >
+        <div className="container">
+          {logo}
+          <h3 className={TITLE}>
+            {title}
+          </h3>
+          {arrow}
         </div>
       </div>
     );
-  }
-} );
+  },
+});

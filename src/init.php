@@ -59,7 +59,14 @@ function laboratory_blocks_cgb_editor_assets() {
 		array( 'wp-edit-blocks' ) // Dependency to include the CSS after it.
 		// filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.editor.build.css' ) // Version: filemtime — Gets file modification time.
 	);
+
+	wp_enqueue_style(
+		'bootstrap',
+		plugins_url( '/laboratory-blocks/node_modules/bootstrap/dist/css/bootstrap.min.css' )
+	);
+
 } // End function laboratory_blocks_cgb_editor_assets().
 
 // Hook: Editor assets.
 add_action( 'enqueue_block_editor_assets', 'laboratory_blocks_cgb_editor_assets' );
+

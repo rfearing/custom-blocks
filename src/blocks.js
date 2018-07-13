@@ -9,5 +9,4 @@
  * Webpack is compiling as the input file.
  */
 
-import './blocks/block.js';
-import './blocks/full-screen-section/index.js';
+import './blocks/full-screen-section';
