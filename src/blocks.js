@@ -9,4 +9,5 @@
  * Webpack is compiling as the input file.
  */
 
-import './blocks/full-screen-section';
+import './blocks/general';
+import './blocks/hero-section';

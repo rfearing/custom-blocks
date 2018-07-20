@@ -1,0 +1,7 @@
+// General Full Screen CSS. Specific CSS found in Theme.
+.wp-block-laboratory-blocks-hero-section {
+  &.full-height-section {
+    min-height: 100vh;
+    width: 100%;
+  }
+} // end container
