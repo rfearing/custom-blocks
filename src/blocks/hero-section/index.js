@@ -27,14 +27,9 @@ import TextOptions, {
 import HeroOptions, { HeroOptionsAttributes } from './hero-options';
 import ImageSelector from '../../components/options/image';
 
-// Selectors. In CSS target inside .wp-block-<your-registered-blocktype>
-// By including CSS classes as variables we reduce the chance of misspelling later.
-const ARROW = 'arrow';
-
 // Guttenberg Imports.
 const { PlainText, InspectorControls } = wp.editor;
 const { registerBlockType } = wp.blocks;
-
 
 /**
  * Register Full Screen Gutenberg Block.
@@ -121,7 +116,7 @@ registerBlockType('laboratory-blocks/hero-section', {
     } = attributes;
 
     // eslint-disable-next-line
-    const arrow = (anchorDown) ? <a className={ARROW} href={anchorDown} /> : <span />; // anchor should be styled in theme.
+    const arrow = (anchorDown) ? <a className="hero-arrow" href={`#${anchorDown}`} /> : <span />; // anchor should be styled in theme.
     let backgroundClasses = BackgroundOptionsClasses(attributes);
     const heroTitle = () => {
       let heading;
@@ -163,11 +158,11 @@ registerBlockType('laboratory-blocks/hero-section', {
           className={backgroundClasses}
         >
           {logoBeforeHeading && heroTitle()} {/* reverse order */}
-          {logoImage && <img src={logoImage.url} alt={logoImage.alt} />}
+          {logoImage && <img src={logoImage.url} alt={logoImage.alt} className="hero-section-logo" />}
           {!logoBeforeHeading && heroTitle()} {/* default order */}
           {arrow}
         </div>
-        {anchorDown && <span id={`#${anchorDown}`} />}
+        {anchorDown && <span id={anchorDown} />}
       </div>
     );
   },

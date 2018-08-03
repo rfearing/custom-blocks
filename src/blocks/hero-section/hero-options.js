@@ -101,7 +101,7 @@ function HeroOptions(props) {
         />
       </PanelRow>
 
-      {attributes.anchorDown && buttonColorSelector}
+      {attributes.headingButtonLink && buttonColorSelector}
 
     </PanelBody>
   );
