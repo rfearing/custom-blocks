@@ -7,7 +7,7 @@
 textarea {
   border: 1px solid #DDD; }
 
-.labs-background-options label {
+.components-panel label {
   margin-bottom: 0; }
 /**
  * #.# Common SCSS
@@ -18,3 +18,11 @@ textarea {
 .wp-block-laboratory-blocks-hero-section .logo {
   max-width: 300px;
   height: auto; }
+
+.components-panel__row {
+  display: block; }
+
+.labs-background-options .editor-plain-text,
+.wp-block-laboratory-blocks-hero-section .editor-plain-text {
+  border: 1px solid tranparentize(#DDD, 0.5);
+  padding: 4px; }

@@ -4,11 +4,21 @@
  * @return {array} The inline CSS class.
  */
 function BackgroundOptionsClasses(attributes) {
-  return [
-    { 'labs-image-background': 'image' === attributes.backgroundType },
-    { 'labs-color-background': 'color' === attributes.backgroundType },
-    { 'labs-video-background': 'video' === attributes.backgroundType },
-  ];
+  let backgroundClass;
+  switch (attributes.backgroundType) {
+    case 'image':
+      backgroundClass = 'labs-image-background';
+      break;
+    case 'color':
+      backgroundClass = 'labs-color-background';
+      break;
+    case 'video':
+      backgroundClass = 'labs-video-background';
+      break;
+    default:
+      backgroundClass = '';
+  }
+  return backgroundClass;
 }
 
 export default BackgroundOptionsClasses;

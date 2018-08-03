@@ -5,3 +5,15 @@
     height: auto;
   }
 } // end container
+
+.components-panel__row {
+  display: block;
+}
+
+.labs-background-options,
+.wp-block-laboratory-blocks-hero-section {
+  .editor-plain-text {
+    border: 1px solid tranparentize(#DDD, 0.5);
+    padding: 4px;
+  }
+}

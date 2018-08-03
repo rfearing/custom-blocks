@@ -4,6 +4,6 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
-.wp-block-laboratory-blocks-hero-section.full-height-section {
+.wp-block-laboratory-blocks-hero-section .full-height-section {
   min-height: 100vh;
   width: 100%; }
