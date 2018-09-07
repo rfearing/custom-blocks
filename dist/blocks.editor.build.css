@@ -4,17 +4,28 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
+.full-height-section {
+  height: auto;
+  min-height: 100vh; }
+
 textarea {
   border: 1px solid #DDD; }
 
 .components-panel label {
   margin-bottom: 0; }
+
+*[style*="color: rgb(255, 255, 255);"] {
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.75); }
 /**
  * #.# Common SCSS
  *
  * Can include things like variables and mixins
  * that are used across the project.
 */
+.full-height-section {
+  height: auto;
+  min-height: 100vh; }
+
 .wp-block-laboratory-blocks-hero-section .logo {
   max-width: 300px;
   height: auto; }
@@ -26,3 +37,12 @@ textarea {
 .wp-block-laboratory-blocks-hero-section .editor-plain-text {
   border: 1px solid tranparentize(#DDD, 0.5);
   padding: 4px; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.full-height-section {
+  height: auto;
+  min-height: 100vh; }

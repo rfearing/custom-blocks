@@ -1,11 +1,8 @@
 /**
- * BLOCK: laboratory-blocks
- *
- * Registering a "Hero" section in Gutenberg.
- * Primary style in ./style.scss | Specific styles through child or custom WP theme.
+ * BLOCK: Laboratory Blocks Call To Action
  */
 
-// Bootstrap components
+import classNames from 'classnames';
 import { Button } from 'reactstrap';
 
 // CSS.
@@ -33,23 +30,15 @@ const { registerBlockType } = wp.blocks;
 
 /**
  * Register Full Screen Gutenberg Block.
- *
- * @param  {string}   name     Block name.
- * @param  {Object}   settings Block settings.
- * @return {?WPBlock}          The block, if it has been successfully
- *                             registered; otherwise `undefined`.
- *
- * Note the dots for the CSS selectors are added here.
  */
 registerBlockType('laboratory-blocks/hero-section', {
-  title: 'Hero Section',
+  title: 'LB Call To Action Section',
   icon: 'editor-expand',
-  category: 'common',
+  category: 'laboratory-blocks',
   description: 'A hero section with options for a colored or image background.',
   keywords: [
     'Hero',
-    'Background',
-    'Full Height',
+    'Call To Action',
   ],
   attributes: {
     title: { type: 'string' },
@@ -59,10 +48,6 @@ registerBlockType('laboratory-blocks/hero-section', {
     ...TextOptionsAttributes,
   },
 
-  /**
-   * The edit function describes the structure of your block in the context of the editor.
-   * This represents what the editor will render when the block is used.
-   */
   edit(props) {
     const {
       attributes,
@@ -79,7 +64,7 @@ registerBlockType('laboratory-blocks/hero-section', {
         </InspectorControls>
       ),
       <div className={`${className}`}>
-        <p>Hero Section</p>
+        <small>Call To Action Section</small>
         <hr />
         {/* Logo */}
         <div className="py-3">
@@ -102,10 +87,6 @@ registerBlockType('laboratory-blocks/hero-section', {
     ];
   },
 
-  /**
-   * The save function defines the way in which the different attributes should be combined
-   * into the final markup, which is then serialized by Gutenberg into post_content.
-   */
   save({ className, attributes }) {
     const {
       logoImage,
@@ -113,11 +94,18 @@ registerBlockType('laboratory-blocks/hero-section', {
       anchorDown,
       logoBeforeHeading,
       headingButtonLink,
+      backgroundImage,
+      fullHeight,
     } = attributes;
 
     // eslint-disable-next-line
-    const arrow = (anchorDown) ? <a className="hero-arrow" href={`#${anchorDown}`} /> : <span />; // anchor should be styled in theme.
+    const arrow = (anchorDown) ? <a className="lab-arrow-down" href={`#${anchorDown}`} /> : <span />; // anchor should be styled in theme.
+    const fullBackgroundImage = backgroundImage && backgroundImage.url ? backgroundImage.url : ''; // background-image is lazyloaded
     let backgroundClasses = BackgroundOptionsClasses(attributes);
+    backgroundClasses = classNames(backgroundClasses, {
+      'full-height-section': fullHeight,
+    });
+
     const heroTitle = () => {
       let heading;
 
@@ -146,16 +134,12 @@ registerBlockType('laboratory-blocks/hero-section', {
       return heading;
     };
 
-    // to make full-height is to just add a css class.
-    if (attributes.fullHeight) {
-      backgroundClasses += ' full-height-section ';
-    }
-
     return (
       <div className={className}>
         <div
           style={BackgroundOptionsInlineStyles(attributes)}
           className={backgroundClasses}
+          data-bg={fullBackgroundImage}
         >
           {logoBeforeHeading && heroTitle()} {/* reverse order */}
           {logoImage && <img src={logoImage.url} alt={logoImage.alt} className="hero-section-logo" />}

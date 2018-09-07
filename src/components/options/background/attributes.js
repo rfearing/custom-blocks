@@ -15,6 +15,9 @@ const BackgroundOptionsAttributes = {
   backgroundColor: {
     type: 'string',
   },
+  fixedBg: {
+    type: 'bool',
+  },
 };
 
 export default BackgroundOptionsAttributes;

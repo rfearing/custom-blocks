@@ -8,3 +8,7 @@ textarea {
     margin-bottom: 0;
   }
 }
+
+*[style*="color: rgb(255, 255, 255);"] {
+  text-shadow: 1px 1px 1px transparentize(#000, 0.25);
+}

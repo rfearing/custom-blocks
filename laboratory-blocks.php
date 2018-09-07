@@ -17,7 +17,6 @@ if ( ! defined( 'WPINC' ) || ! function_exists( 'the_gutenberg_project' ) ) {
 	die;
 }
 
-
 /**
  * Currently plugin version.
  * Start at version 1.0.0 and use SemVer - https://semver.org

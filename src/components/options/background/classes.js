@@ -7,7 +7,10 @@ function BackgroundOptionsClasses(attributes) {
   let backgroundClass;
   switch (attributes.backgroundType) {
     case 'image':
-      backgroundClass = 'labs-image-background';
+      backgroundClass = 'labs-image-background lazyload'; // image bg has lazyload
+      if (attributes.fixedBg) {
+        backgroundClass += ' fixed-background ';
+      }
       break;
     case 'color':
       backgroundClass = 'labs-color-background';

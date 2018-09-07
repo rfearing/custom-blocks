@@ -17,8 +17,8 @@ const {
   PanelColor,
   PanelRow,
   SelectControl,
+  CheckboxControl,
 } = wp.components;
-
 
 // Export for ease of importing in individual blocks.
 export {
@@ -38,6 +38,19 @@ function BackgroundOptions(props) {
   const setBackgroundImage = value => setAttributes({ backgroundImage: value });
   const removeBackgroundImage = () => setAttributes({ backgroundImage: null });
   const setBackgroundColor = value => setAttributes({ backgroundColor: value });
+
+  const fixedBgCheckbox = (
+    <PanelRow>
+      <CheckboxControl
+        className="has-small-font-size mb-0"
+        key="fixed-bg"
+        label="Parallax Background"
+        checked={attributes.fixedBg}
+        onChange={bool => setAttributes({ fixedBg: bool })}
+      />
+      <small>If selected the background image will be fixed and it&#39;s content will scroll.</small>
+    </PanelRow>
+  );
 
   const imageBackgroundSelect = () => {
     if ('image' !== attributes.backgroundType) {
@@ -60,6 +73,7 @@ function BackgroundOptions(props) {
               )}
             />
           </p>
+          {fixedBgCheckbox}
         </div>
       );
     }
@@ -84,10 +98,10 @@ function BackgroundOptions(props) {
             </p>
           </div>
         ) : null}
+        {fixedBgCheckbox}
       </div>
     );
-  };
-
+  }; // imageBackgroundSelect
 
   const colorPanelSelect = () => {
     if ('color' !== attributes.backgroundType) {
