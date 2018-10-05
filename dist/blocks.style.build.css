@@ -25,3 +25,12 @@
 
 .fixed-background {
   background-attachment: fixed; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.full-height-section {
+  height: auto;
+  min-height: 100vh; }

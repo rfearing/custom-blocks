@@ -13,7 +13,7 @@ function AlignmentClasses(attributes) {
       cssClass = 'labs-container-justify-evenly';
       break;
     default:
-      cssClass = '';
+      cssClass = 'labs-container';
   }
   return cssClass;
 }

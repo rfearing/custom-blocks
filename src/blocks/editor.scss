@@ -12,3 +12,8 @@ textarea {
 *[style*="color: rgb(255, 255, 255);"] {
   text-shadow: 1px 1px 1px transparentize(#000, 0.25);
 }
+
+div[class*="wp-block-laboratory-blocks-"][style*="background-image"] {
+  background-color: rgba(255, 255, 255, 0.85);
+	background-blend-mode: lighten;
+}

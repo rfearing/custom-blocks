@@ -16,6 +16,10 @@ textarea {
 
 *[style*="color: rgb(255, 255, 255);"] {
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.75); }
+
+div[class*="wp-block-laboratory-blocks-"][style*="background-image"] {
+  background-color: rgba(255, 255, 255, 0.85);
+  background-blend-mode: lighten; }
 /**
  * #.# Common SCSS
  *
@@ -37,6 +41,19 @@ textarea {
 .wp-block-laboratory-blocks-hero-section .editor-plain-text {
   border: 1px solid tranparentize(#DDD, 0.5);
   padding: 4px; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.full-height-section {
+  height: auto;
+  min-height: 100vh; }
+
+.labs-image-background {
+  background-color: rgba(255, 255, 255, 0.4);
+  background-blend-mode: lighten; }
 /**
  * #.# Common SCSS
  *

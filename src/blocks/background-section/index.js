@@ -52,7 +52,9 @@ registerBlockType('laboratory-blocks/background-section', {
     const {
       className,
       isSelected,
+      attributes,
     } = props;
+    const backgroundStyles = BackgroundOptionsInlineStyles(attributes);
     return [
       !!isSelected && (
         <InspectorControls key="inspector">
@@ -61,7 +63,7 @@ registerBlockType('laboratory-blocks/background-section', {
           <TextOptions {...props} />
         </InspectorControls>
       ),
-      <div className={`${className}`}>
+      <div className={`${className}`} style={backgroundStyles}>
         <small>Laboratory Blocks Container</small>
         <hr />
         <InnerBlocks />
