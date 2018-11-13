@@ -10,6 +10,5 @@
  */
 
 import './blocks/general';
-import './blocks/hero-section';
 import './blocks/background-section';
 import './blocks/services-section';

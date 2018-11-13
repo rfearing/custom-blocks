@@ -30,27 +30,6 @@ div[class*="wp-block-laboratory-blocks-"][style*="background-image"] {
   height: auto;
   min-height: 100vh; }
 
-.wp-block-laboratory-blocks-hero-section .logo {
-  max-width: 300px;
-  height: auto; }
-
-.components-panel__row {
-  display: block; }
-
-.labs-background-options .editor-plain-text,
-.wp-block-laboratory-blocks-hero-section .editor-plain-text {
-  border: 1px solid tranparentize(#DDD, 0.5);
-  padding: 4px; }
-/**
- * #.# Common SCSS
- *
- * Can include things like variables and mixins
- * that are used across the project.
-*/
-.full-height-section {
-  height: auto;
-  min-height: 100vh; }
-
 .labs-image-background {
   background-color: rgba(255, 255, 255, 0.4);
   background-blend-mode: lighten; }

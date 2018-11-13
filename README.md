@@ -15,6 +15,7 @@ Below you will find some information on how to run scripts.
 
 The [Gutenberg Handbook](https://wordpress.org/gutenberg/handbook/) is a good place to start as well as [CSS Tricks' Tutorial](https://css-tricks.com/guides/learning-gutenberg/).
 
+**You should develop with** `SCRIPT_DEBUG` **set to true by adding** `define('SCRIPT_DEBUG', true);` **to your** `wp-config.php`
 
 
 ## How is this plugin organized?
@@ -39,7 +40,6 @@ Most of our code is in the `src/` folder. We've broken it down into:
 ## Blocks
 | Block | Description | Progress |
 |---|---|---|
-| Call to action | Call to action with a button. This may be deprecated. | Ready |
 | Background Section | Wrap other elements with background | Ready but needs Video BG. |
 | Services | Fetch Services Custom Post Type and display | In Progress |
 | Team | Fetch Team Custom Post Type and display | Not Yet Started |
@@ -52,6 +52,10 @@ Most of our code is in the `src/` folder. We've broken it down into:
 | Container | Container element to wrap other elements | Ready |
 | BG Option | Give element a background image or color | Ready |
 | Text Option | Control text color, alignment etc. | Ready |
+
+| Depricated Block | Reason for Deprication |
+|---|---|---|
+| Call to action | Having a hero section seems unneeded, especially as we've created a Background Section with Child Blocks. |
 
 
 ## Scripts:

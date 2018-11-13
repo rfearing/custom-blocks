@@ -5,8 +5,9 @@ import BackgroundOptionsAttributes from './attributes';
 import BackgroundOptionsClasses from './classes';
 import BackgroundOptionsInlineStyles from './inline-styles';
 
+const { __ } = wp.i18n;
 const {
-  ColorPalette,
+  PanelColorSettings,
   MediaUpload,
 } = wp.editor;
 
@@ -14,7 +15,6 @@ const {
   Button,
   Dashicon,
   PanelBody,
-  PanelColor,
   PanelRow,
   SelectControl,
   CheckboxControl,
@@ -44,11 +44,13 @@ function BackgroundOptions(props) {
       <CheckboxControl
         className="has-small-font-size mb-0"
         key="fixed-bg"
-        label="Parallax Background"
+        label={__('Parallax Background')}
         checked={attributes.fixedBg}
         onChange={bool => setAttributes({ fixedBg: bool })}
       />
-      <small>If selected the background image will be fixed and it&#39;s content will scroll.</small>
+      <small>
+        If selected the background image will be fixed and it&#39;s content will scroll.
+      </small>
     </PanelRow>
   );
 
@@ -109,33 +111,33 @@ function BackgroundOptions(props) {
     }
 
     return (
-      <PanelColor
-        title="Background Color"
-        colorValue={attributes.backgroundColor}
-      >
-        <ColorPalette
-          value={attributes.backgroundColor}
-          onChange={setBackgroundColor}
-        />
-      </PanelColor>
+      <PanelColorSettings
+        title={__('Background Color')}
+        initialOpen={false}
+        colorSettings={[{
+          value: attributes.backgroundColor,
+          onChange: setBackgroundColor,
+          label: __('Background Color'),
+        }]}
+      />
     );
   };
 
   return (
     <PanelBody
-      title="Background Options"
+      title={__('Background Options')}
       className="labs-background-options"
       initialOpen={false}
     >
       <PanelRow>
         <SelectControl
           key="background-type"
-          label="Background Type"
+          label={__('Background Type')}
           value={attributes.backgroundType ? attributes.backgroundType : ''}
           options={[
-            { label: 'None', value: '' },
-            { label: 'Image', value: 'image' },
-            { label: 'Color', value: 'color' },
+            { label: __('None'), value: '' },
+            { label: __('Image'), value: 'image' },
+            { label: __('Color'), value: 'color' },
           ]}
           onChange={setBackgroundType}
         />

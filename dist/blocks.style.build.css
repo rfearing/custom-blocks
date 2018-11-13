@@ -7,15 +7,6 @@
 .full-height-section {
   height: auto;
   min-height: 100vh; }
-/**
- * #.# Common SCSS
- *
- * Can include things like variables and mixins
- * that are used across the project.
-*/
-.full-height-section {
-  height: auto;
-  min-height: 100vh; }
 
 .labs-image-background {
   background-size: cover; }

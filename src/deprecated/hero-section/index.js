@@ -1,5 +1,7 @@
 /**
- * BLOCK: Laboratory Blocks Call To Action
+ * DEPRECATED BLOCK: Laboratory Blocks Call To Action
+ * REASON FOR DEPRECATION: Having a hero section seems unneeded,
+ * especially as we've created a Background Section with Child Blocks.
  */
 
 import classNames from 'classnames';
