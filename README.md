@@ -54,7 +54,7 @@ Most of our code is in the `src/` folder. We've broken it down into:
 | Text Option | Control text color, alignment etc. | Ready |
 
 | Depricated Block | Reason for Deprication |
-|---|---|---|
+|---|---|
 | Call to action | Having a hero section seems unneeded, especially as we've created a Background Section with Child Blocks. |
 
 
