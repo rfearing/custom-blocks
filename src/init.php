@@ -52,6 +52,33 @@ function laboratory_blocks_register() {
 		'4.1.0', // Up to date as of 8/7/18.
 		true
 	);
+
+	if ( ( ! wp_script_is( 'bootstrapjs', 'queue' ) ) && ( ! wp_script_is( 'bootstrapjs', 'done' ) ) ) {
+		wp_enqueue_script(
+			'bootstrapjs',
+			'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js',
+			array( 'jquery', 'popperjs' ),
+			'4.0.0',
+			true
+		);
+
+		wp_enqueue_script(
+			'popperjs',
+			'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js',
+			array( 'jquery' ),
+			'1.12.9',
+			true
+		);
+	}
+
+	if ( ( ! wp_style_is( 'bootstrap', 'queue' ) ) && ( ! wp_style_is( 'bootstrap', 'done' ) ) ) {
+		wp_enqueue_style(
+			'bootstrap',
+			'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css',
+			null,
+			'4.0.0'
+		);
+	}
 }
 add_action( 'wp_enqueue_scripts', 'laboratory_blocks_register' );
 
@@ -88,22 +115,15 @@ function laboratory_blocks_cgb_editor_assets() {
 	wp_enqueue_script(
 		'laboratory_blocks-cgb-block-js', // Handle.
 		plugins_url( '/dist/blocks.build.js', dirname( __FILE__ ) ), // Block.build.js: We register the block here. Built with Webpack.
-		array( 'wp-blocks', 'wp-i18n', 'wp-element' ), // Dependencies, defined above.
-		// filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.build.js' ), // Version: filemtime — Gets file modification time.
-		true // Enqueue the script in the footer.
+		array( 'wp-blocks', 'wp-i18n', 'wp-element' ),
+		true
 	);
 
 	// Styles.
 	wp_enqueue_style(
 		'laboratory_blocks-cgb-block-editor-css', // Handle.
 		plugins_url( 'dist/blocks.editor.build.css', dirname( __FILE__ ) ), // Block editor CSS.
-		array( 'wp-edit-blocks' ) // Dependency to include the CSS after it.
-		// filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.editor.build.css' ) // Version: filemtime — Gets file modification time.
-	);
-
-	wp_enqueue_style(
-		'bootstrap',
-		plugins_url( '/laboratory-blocks/node_modules/bootstrap/dist/css/bootstrap.min.css' )
+		array( 'wp-edit-blocks' )
 	);
 
 } // End function laboratory_blocks_cgb_editor_assets().

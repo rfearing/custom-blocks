@@ -1,5 +1,4 @@
 # Laboratory Blocks.
-
 ### These are Gutenburg blocks intended to be used with [Laboratory Theme](https://github.com/chiedolabs/chiedo-labs-theme) and its children.
 
 
@@ -18,6 +17,7 @@ The [Gutenberg Handbook](https://wordpress.org/gutenberg/handbook/) is a good pl
 **You should develop with** `SCRIPT_DEBUG` **set to true by adding** `define('SCRIPT_DEBUG', true);` **to your** `wp-config.php`
 
 
+
 ## How is this plugin organized?
 
 Most of our code is in the `src/` folder. We've broken it down into:
@@ -33,7 +33,9 @@ Most of our code is in the `src/` folder. We've broken it down into:
   - components/ // reusable portions for blocks
     - containers // reusable containers
     - options // reusable options e.g. background or font
+    // ...
   - helpers/
+  - deprecated/ // blocks that are no longer used
 
 ```
 
@@ -41,10 +43,10 @@ Most of our code is in the `src/` folder. We've broken it down into:
 | Block | Description | Progress |
 |---|---|---|
 | Background Section | Wrap other elements with background | Ready but needs Video BG. |
+| Carousel | Image with content Carousel | Complete |
 | Services | Fetch Services Custom Post Type and display | In Progress |
 | Team | Fetch Team Custom Post Type and display | Not Yet Started |
 | Portfolio | Fetch Portfolio Custom Post Type and display | Not Yet Started |
-| Carousel | Image with content Carousel | Not Yet Started |
 | Video | Display Full Width Video | Not Yet Started |
 
 | Component | Description | Progress |

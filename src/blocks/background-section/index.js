@@ -12,8 +12,6 @@ import BackgroundOptions, {
   BackgroundOptionsClasses,
   BackgroundOptionsInlineStyles,
 } from '../../components/options/background';
-// css classes
-import AlignmentClasses from './classes';
 // text helpers
 import TextOptions, {
   TextOptionsAttributes,
@@ -29,6 +27,8 @@ import Container from '../../components/container';
 const { InspectorControls, InnerBlocks } = wp.editor;
 const { registerBlockType } = wp.blocks;
 
+const { __ } = wp.i18n;
+
 /**
  * Register Editor with Color or Image Background Block.
  */
@@ -38,9 +38,9 @@ registerBlockType('laboratory-blocks/background-section', {
   category: 'laboratory-blocks',
   description: 'A wrapper container with background options.',
   keywords: [
-    'Container',
-    'Background',
-    'Full Height',
+    __('Container'),
+    __('Background'),
+    __('Full Height'),
   ],
   attributes: {
     ...ContainerOptionAttributes,
@@ -75,26 +75,19 @@ registerBlockType('laboratory-blocks/background-section', {
     const {
       backgroundImage,
       includeContainer,
-      anchorDown,
       fullHeight,
     } = attributes;
 
-    // eslint-disable-next-line
-    const arrow = (anchorDown) ? <a className="lab-arrow-down" href={`#${anchorDown}`} /> : <span />; // anchor should be styled in theme.
-    const anchor = (anchorDown) ? <a name={anchorDown} /> : <span />;
     const fullBackgroundImage = backgroundImage && backgroundImage.url ? backgroundImage.url : ''; // background-image is lazyloaded
     const backgroundStyles = BackgroundOptionsInlineStyles(attributes);
     const textStyles = TextOptionsInlineStyles(attributes);
     let backgroundClasses = BackgroundOptionsClasses(attributes);
-    const alignmentClasses = AlignmentClasses(attributes);
     backgroundClasses = classNames(
       backgroundClasses,
-      alignmentClasses,
       {
         'full-height-section': fullHeight,
         'lab-background-container': true,
-        'section-has-arrow': anchorDown,
-      }
+      },
     );
 
     // Wrap the content in the container class if the option is selected.
@@ -110,9 +103,7 @@ registerBlockType('laboratory-blocks/background-section', {
           data-bg={fullBackgroundImage}
         >
           {content}
-          {arrow}
-        </div> {/* background container */}
-        {anchor}
+        </div>
       </div>
     );
   },

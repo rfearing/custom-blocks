@@ -1,4 +1,9 @@
-// Block Wide CSS Selectors
+/*
+ * Generic CSS Selectors
+ */
+$editorSpacing: 1em;
+$editorMaxWidth: 1200px; // could also be none.
+
 textarea {
   border: 1px solid #DDD;
 }
@@ -9,11 +14,30 @@ textarea {
   }
 }
 
+// Text with white BG should have a text shadow so it can still be seen.
 *[style*="color: rgb(255, 255, 255);"] {
   text-shadow: 1px 1px 1px transparentize(#000, 0.25);
 }
 
-div[class*="wp-block-laboratory-blocks-"][style*="background-image"] {
+// background-image for the admin
+div[class*='wp-block-laboratory-blocks-'][style*='background-image'] {
   background-color: rgba(255, 255, 255, 0.85);
-	background-blend-mode: lighten;
+  background-blend-mode: lighten;
+}
+
+/*
+ * Admin UI Helpers:
+ */
+
+.wp-admin [data-type^='laboratory-blocks'] {
+  margin-bottom: $editorSpacing;
+  margin-top: $editorSpacing;
+  // Give our blocks some breathing room in the editor for a better experience.
+  max-width: $editorMaxWidth;
+  // see more clearly where your editing.
+  border: 3px solid transparentize(#000, 0.5);
+}
+
+.editor-inner-blocks {
+  padding: $editorSpacing;
 }

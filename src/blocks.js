@@ -12,3 +12,5 @@
 import './blocks/general';
 import './blocks/background-section';
 import './blocks/services-section';
+import './blocks/carousel';
+import './blocks/slide';
