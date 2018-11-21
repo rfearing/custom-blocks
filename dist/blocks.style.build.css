@@ -1,3 +1,21 @@
-.full-height-section{height:100vh}.full-height-section,.full-height-section>.container{height:100vh}.labs-image-background{background-size:cover}.fixed-background{background-attachment:fixed}
-.full-height-section{height:100vh}.full-height-section,.full-height-section>.container{height:100vh}.labs-image-background{background-size:cover}.fixed-background{background-attachment:fixed}
-.full-height-section{height:100vh}.full-height-section,.full-height-section>.container{height:100vh}.labs-image-background{background-size:cover}.fixed-background{background-attachment:fixed}.wp-block-laboratory-blocks-carousel .carousel,.wp-block-laboratory-blocks-carousel .carousel-item,.wp-block-laboratory-blocks-carousel .active{height:100%}
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.full-height-section {
+  height: 100vh; }
+  .full-height-section, .full-height-section > .container {
+    height: 100vh; }
+
+.labs-image-background {
+  background-size: cover; }
+
+.fixed-background {
+  background-attachment: fixed; }
+
+.wp-block-laboratory-blocks-carousel .carousel,
+.wp-block-laboratory-blocks-carousel .carousel-item,
+.wp-block-laboratory-blocks-carousel .active {
+  height: 100%; }

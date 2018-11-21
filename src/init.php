@@ -26,7 +26,6 @@ function laboratory_blocks_cgb_block_assets() {
 		'laboratory_blocks-cgb-style-css', // Handle.
 		plugins_url( 'dist/blocks.style.build.css', dirname( __FILE__ ) ), // Block style CSS.
 		array( 'wp-blocks' ) // Dependency to include the CSS after it.
-		// filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.style.build.css' ) // Version: filemtime — Gets file modification time.
 	);
 } // End function laboratory_blocks_cgb_block_assets().
 
@@ -139,4 +138,4 @@ require_once plugin_dir_path( __FILE__ ) . 'helpers/post-helpers.php';
 /**
  *  Server Side Render Functions.
  */
-require_once plugin_dir_path( __FILE__ ) . 'blocks/services-section/index.php';
+require_once plugin_dir_path( __FILE__ ) . 'blocks/team/renderer.php';

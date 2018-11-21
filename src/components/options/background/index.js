@@ -45,7 +45,8 @@ function BackgroundOptions(props) {
         If selected the background image will be fixed and it&#39;s content will scroll.
       </small>
     </span>
-  )
+  );
+
   const fixedBgCheckbox = (
     <PanelRow>
       <CheckboxControl

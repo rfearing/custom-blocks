@@ -27,11 +27,11 @@ const { ServerSideRender } = wp.components;
 /**
  * Register Block.
  */
-registerBlockType('laboratory-blocks/services-section', {
+registerBlockType('laboratory-blocks/services', {
   title: 'Services',
   icon: 'info',
   category: 'laboratory-blocks',
-  description: 'A wrapper container with background options.',
+  description: '.....',
   keywords: [
     'Services',
   ],

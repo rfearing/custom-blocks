@@ -1,0 +1,29 @@
+{
+    "name": "chiedolabs/laboratory-helpers",
+    "description": "Simple helper functions to use in your custom WordPress Theme.",
+    "keywords": ["WordPress"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ricardo Fearing",
+            "email": "ricardo@chiedo.com",
+            "homepage": "https://github.com/rfearing"
+        },
+        {
+            "name": "Don Townsend",
+            "email": "don@chiedo.com",
+            "homepage": "https://github.com/townofdon"
+        }
+    ],
+    "type": "library",
+    "require": {},
+    "require-dev": {},
+    "autoload": {
+        "files": [
+            "src/index.php"
+        ],
+        "psr-4": {
+            "ChiedoLabs\\LaboratoryHelpers\\": "src/"
+        }
+    }
+}

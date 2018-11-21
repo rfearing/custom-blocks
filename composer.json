@@ -1,0 +1,8 @@
+{
+    "name": "ricardo/laboratory-blocks",
+    "description": "WordPress Plugin for Chiedo Labs",
+    "type": "project",
+    "require": {
+        "chiedolabs/laboratory-helpers": "^1.0"
+    }
+}

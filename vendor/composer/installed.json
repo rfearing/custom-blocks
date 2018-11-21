@@ -1,0 +1,49 @@
+[
+    {
+        "name": "chiedolabs/laboratory-helpers",
+        "version": "1.0.5",
+        "version_normalized": "1.0.5.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/chiedolabs/laboratory-helpers.git",
+            "reference": "4ff6a9fdb930dc51b8173e28a7e27c5d813fc9af"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/chiedolabs/laboratory-helpers/zipball/4ff6a9fdb930dc51b8173e28a7e27c5d813fc9af",
+            "reference": "4ff6a9fdb930dc51b8173e28a7e27c5d813fc9af",
+            "shasum": ""
+        },
+        "time": "2018-11-21T21:11:07+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "files": [
+                "src/index.php"
+            ],
+            "psr-4": {
+                "ChiedoLabs\\LaboratoryHelpers\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Ricardo Fearing",
+                "email": "ricardo@chiedo.com",
+                "homepage": "https://github.com/rfearing"
+            },
+            {
+                "name": "Don Townsend",
+                "email": "don@chiedo.com",
+                "homepage": "https://github.com/townofdon"
+            }
+        ],
+        "description": "Simple helper functions to use in your custom WordPress Theme.",
+        "keywords": [
+            "wordpress"
+        ]
+    }
+]

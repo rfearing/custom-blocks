@@ -3,7 +3,6 @@
  */
 
 import classNames from 'classnames';
-import './style.scss';
 import './editor.scss';
 
 // Options and Attributes

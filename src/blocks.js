@@ -11,6 +11,7 @@
 
 import './blocks/general';
 import './blocks/background-section';
-import './blocks/services-section';
+// import './blocks/services';
+import './blocks/team';
 import './blocks/carousel';
 import './blocks/slide';
