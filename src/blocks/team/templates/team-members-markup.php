@@ -51,8 +51,8 @@ function lab_blocks_team_markup( $query, $where_to_render_details, $render_as_bg
 function lab_blocks_member_markup( $render_as_bg_image, $render_details, $render_link ) {
 	$classes = ( $render_as_bg_image ) ? 'lab-blocks-member lazyload' : 'lab-blocks-member';
 	$id      = get_post_thumbnail_id();
-	$large   = get_img_src_from_attachment_ids( [ $id ], 'full' );
-	$small   = get_img_src_from_attachment_ids( [ $id ], 'medium_large' );
+	$large   = get_img_src_from_attachment_ids( $id, 'full' );
+	$small   = get_img_src_from_attachment_ids( $id, 'medium_large' );
 	$role    = get_post_meta( get_the_ID(), 'team_member_role' );
 
 	$markup = '<div class="' . $classes . '"';

@@ -10,6 +10,10 @@ Below you will find some information on how to run scripts.
 
 * ReactStrap - [Bootstrap React Components](http://reactstrap.github.io/)
 
+### Added Composer packages
+
+* [Laboratory Helpers](https://github.com/chiedolabs/laboratory-helpers)
+
 ## Documentation
 
 The [Gutenberg Handbook](https://wordpress.org/gutenberg/handbook/) is a good place to start as well as [CSS Tricks' Tutorial](https://css-tricks.com/guides/learning-gutenberg/).
