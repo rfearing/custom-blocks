@@ -14,7 +14,8 @@
  * @param Boolean $render_as_bg_image Whether to render image as a <img /> or bg-image.
  */
 function lab_blocks_team_markup( $query, $where_to_render_details, $render_as_bg_image ) {
-	$markup = '<div class="lab-blocks-team-members">';
+	$id     = get_post_thumbnail_id();
+	$markup = '<div class="lab-blocks-team-members" data-team-id="' . $id . '"';
 	// Only include modal section if user selected to render seperately.
 	if ( 'seperate' === $where_to_render_details ) {
 		$markup = '<div class="lab-blocks-team-details">';
@@ -55,7 +56,8 @@ function lab_blocks_member_markup( $render_as_bg_image, $render_details, $render
 	$small   = get_img_src_from_attachment_ids( $id, 'medium_large' );
 	$role    = get_post_meta( get_the_ID(), 'team_member_role' );
 
-	$markup = '<div class="' . $classes . '"';
+	$markup  = '<div class="' . $classes . '"';
+	$markup .= 'data-team-id="' . $id . '"';
 	// Only include background style if user selected that option.
 	if ( $render_as_bg_image ) {
 		$markup .= 'style="background-image: url(' . $small . ')"';
