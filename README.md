@@ -44,8 +44,8 @@ Most of our code is in the `src/` folder. We've broken it down into:
 |---|---|---|
 | Background Section | Wrap other elements with background | Ready but needs Video BG. |
 | Carousel | Image with content Carousel | Complete |
-| Services | Fetch Services Custom Post Type and display | In Progress |
-| Team | Fetch Team Custom Post Type and display | Not Yet Started |
+| Team | Fetch Team Custom Post Type and display | Complete. Needs testing. |
+| Services | Fetch Services Custom Post Type and display | Not Yet Started |
 | Portfolio | Fetch Portfolio Custom Post Type and display | Not Yet Started |
 | Video | Display Full Width Video | Not Yet Started |
 
