@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "bootstrap": "^4.1.2",
-    "cgb-scripts": "1.9.7",
+    "cgb-scripts": "1.13.0",
     "classnames": "^2.2.6",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",

@@ -114,7 +114,7 @@ function laboratory_blocks_cgb_editor_assets() {
 	wp_enqueue_script(
 		'laboratory_blocks-cgb-block-js', // Handle.
 		plugins_url( '/dist/blocks.build.js', dirname( __FILE__ ) ), // Block.build.js: We register the block here. Built with Webpack.
-		array( 'wp-blocks', 'wp-i18n', 'wp-element' ),
+		array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ),
 		true
 	);
 
