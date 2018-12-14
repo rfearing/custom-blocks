@@ -38,9 +38,6 @@ const indicatorLabel = (
 );
 
 export const CarouselOptionAttributes = {
-  carouselId: {
-    type: 'string',
-  },
   carouselHeight: {
     type: 'string',
   },
@@ -64,18 +61,6 @@ function CarouselOptions(props) {
       title={__('Carousel Options')}
       initialOpen={false}
     >
-      <small><b>Include a unique ID.</b></small>
-      <PanelRow>
-        <PlainText
-          {...smallFont}
-          key="carousel-id"
-          placeholder="ADD ID HERE"
-          value={attributes.carouselId}
-          onChange={x => setAttributes({ carouselId: x })}
-          style={inputStyle}
-        />
-      </PanelRow>
-      <hr />
       {heightLabel}
       <PanelRow>
         <PlainText

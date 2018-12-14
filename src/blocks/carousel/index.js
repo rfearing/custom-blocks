@@ -2,11 +2,14 @@
  * BLOCK: Laboratory Blocks Carousel
  */
 import classNames from 'classnames';
+import './editor.scss';
+import './style.scss';
 import { Fragment } from 'react';
 import CarouselOptions, {
   CarouselOptionAttributes,
 } from './options';
 import heightClass from './classes';
+import Indicators from '../../components/carousel/indicators';
 
 const { registerBlockType } = wp.blocks;
 const { InspectorControls, InnerBlocks } = wp.editor;
@@ -19,7 +22,6 @@ registerBlockType('laboratory-blocks/carousel', {
   icon: 'slides',
   category: 'laboratory-blocks',
   description: __('A Bootstrap Carousel'),
-  supports: { anchor: true },
   keywords: [
     __('Carousel'),
     __('Slider'),
@@ -29,17 +31,22 @@ registerBlockType('laboratory-blocks/carousel', {
     clientId: {
       type: 'string',
     },
+    innerCount: {
+      type: 'integer',
+    },
   },
 
   edit(props) {
     const { setAttributes, isSelected } = props;
-    const { clientId } = props;
+    const { clientId, attributes } = props;
     // find innerBlocks, add "active" to the first slide, set attribute slideLength
     const children = select('core/editor').getBlocksByClientId(clientId)[0].innerBlocks;
+    // children.length changed after update... this seems to work:
+    const innerCount = select('core/editor').getBlocksByClientId(clientId)[0].innerBlocks.length;
     const firstChild = children[0] || false;
     if (firstChild) {
       dispatch('core/editor').updateBlockAttributes(firstChild.clientId, { className: 'active' });
-      setAttributes({ clientId });
+      setAttributes({ clientId, innerCount });
     }
 
     return [
@@ -49,42 +56,34 @@ registerBlockType('laboratory-blocks/carousel', {
         </InspectorControls>
       ),
       <Fragment>
-        <p>Laboratory Blocks Carousel:&nbsp;
-          <small>Include a unique ID under &quot;Carousel Options&quot;</small>
-        </p>
+        <p>Laboratory Blocks Carousel:</p>
         <hr />
         <InnerBlocks allowedBlocks={ALLOWED_BLOCKS} />
+        {
+          attributes.hasIndicators && (
+            <Indicators count={attributes.innerCount} clientId={clientId} />
+          )
+        }
       </Fragment>,
     ];
   },
 
   save(props) {
-    const { className, attributes, innerBlocks } = props;
-    const { carouselHeight, hasControls, hasIndicators } = attributes;
-    let { carouselId } = attributes;
-    carouselId = carouselId || 'laboratory-carousel';
+    const { className, attributes } = props;
+    const {
+      carouselHeight,
+      hasControls,
+      hasIndicators,
+      clientId,
+      innerCount,
+    } = attributes;
     const height = heightClass(attributes);
     const classes = classNames(className, 'carousel', 'slide', height);
     const styles = carouselHeight ? { height: carouselHeight } : {};
 
-    let Indicators;
-    if (innerBlocks && innerBlocks.length) {
-      Indicators = innerBlocks.map((block, i) => {
-        const c = (0 === i) ? 'active' : '';
-        return (
-          <li
-            key={`${carouselId}-trigger-${block.clientId}`}
-            data-target={`#${carouselId}`}
-            data-slide-to={i}
-            className={c}
-          />
-        );
-      });
-    }
-
     return (
       <div
-        id={carouselId}
+        id={`carousel-${clientId}`}
         className={classes}
         data-ride="carousel"
         style={styles}
@@ -93,11 +92,11 @@ registerBlockType('laboratory-blocks/carousel', {
         {
           hasControls && (
             <Fragment>
-              <a claclassName="carousel-control-prev" href={`#${carouselId}`} role="button" data-slide="prev">
+              <a claclassName="carousel-control-prev" href={`#${clientId}`} role="button" data-slide="prev">
                 <span className="carousel-control-prev-icon" aria-hidden="true" />
                 <span className="sr-only">Previous</span>
               </a>
-              <a claclassName="carousel-control-prev" href={`#${carouselId}`} role="button" data-slide="next">
+              <a claclassName="carousel-control-prev" href={`#${clientId}`} role="button" data-slide="next">
                 <span className="carousel-control-next-icon" aria-hidden="true" />
                 <span className="sr-only">Next</span>
               </a>
@@ -106,9 +105,7 @@ registerBlockType('laboratory-blocks/carousel', {
         }
         {
           hasIndicators && (
-            <ol className="carousel-indicators">
-              {Indicators}
-            </ol>
+            <Indicators count={innerCount} clientId={clientId} />
           )
         }
       </div>
